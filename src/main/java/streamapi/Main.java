@@ -23,6 +23,14 @@ public class Main {
                                 new Student("E", 80, Enrollment.IFM))));
 
         // Task II: Set of ECTS of all IFM students
+        System.out.println(
+                ifmCps(
+                        List.of(
+                                new Student("A", 35, Enrollment.IFM),
+                                new Student("B", 35, Enrollment.IFM),
+                                new Student("C", 60, Enrollment.ELT),
+                                new Student("D", 45, Enrollment.ARCH),
+                                new Student("E", 80, Enrollment.IFM))));
 
         // Task III: Random
 
@@ -54,7 +62,16 @@ public class Main {
      */
     public static Set<Integer> ifmCps(List<Student> studentList) {
         // TODO
-        throw new UnsupportedOperationException();
+        Set<Integer> result = new HashSet<>();
+        Integer i = 0;
+        for (Student v : studentList) {
+            if (v.isIFM()) {
+                i = v.cps();
+                result.add(i);
+            }
+        }
+
+        return result;
     }
 
     /**
