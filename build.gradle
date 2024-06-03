@@ -24,13 +24,14 @@ dependencies {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(21)
+        languageVersion = JavaLanguageVersion.of(20)
     }
-    sourceCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_20
 }
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 sourceSets.main.java.srcDirs = ['src/main/java/', 'solution/main/java/']
+sourceSets.main.resources.srcDirs = ['src/main/resources/streamapi']
 sourceSets.test.java.srcDirs = ['src/test/java/']
 
 
