@@ -15,8 +15,24 @@ public class Main {
     public static void main(String... args) {
 
         // Task I: Students
+        System.out.println(
+                students(
+                        List.of(
+                                new Student("A", 30, Enrollment.IFM),
+                                new Student("B", 45, Enrollment.IFM),
+                                new Student("C", 60, Enrollment.ELT),
+                                new Student("D", 45, Enrollment.ARCH),
+                                new Student("E", 80, Enrollment.IFM))));
 
         // Task II: Set of ECTS of all IFM students
+        System.out.println(
+                ifmCps(
+                        List.of(
+                                new Student("A", 35, Enrollment.IFM),
+                                new Student("B", 35, Enrollment.IFM),
+                                new Student("C", 60, Enrollment.ELT),
+                                new Student("D", 45, Enrollment.ARCH),
+                                new Student("E", 80, Enrollment.IFM))));
 
         // Task III: Random
         System.out.println(random());
@@ -34,8 +50,9 @@ public class Main {
      * @return Sum of credit points of all students
      */
     public static Integer students(List<Student> studentList) {
-        // TODO
-        throw new UnsupportedOperationException();
+        return (int)studentList.stream()
+            .map(Student::cps)
+            .reduce(0,Integer::sum);
     }
 
     /**
@@ -47,8 +64,10 @@ public class Main {
      * @return Set of credit points of all IFM students
      */
     public static Set<Integer> ifmCps(List<Student> studentList) {
-        // TODO
-        throw new UnsupportedOperationException();
+        return studentList.stream()
+            .filter(Student::isIFM)
+            .map(Student::cps)
+            .collect(Collectors.toSet());
     }
 
     /**
