@@ -17,10 +17,27 @@ public class Main {
     public static void main(String... args) {
 
         // Task I: Students
+        System.out.println(
+                students(
+                        List.of(
+                                new Student("A", 30, Enrollment.IFM),
+                                new Student("B", 45, Enrollment.IFM),
+                                new Student("C", 60, Enrollment.ELT),
+                                new Student("D", 45, Enrollment.ARCH),
+                                new Student("E", 80, Enrollment.IFM))));
 
         // Task II: Set of ECTS of all IFM students
+        System.out.println(
+                ifmCps(
+                        List.of(
+                                new Student("A", 35, Enrollment.IFM),
+                                new Student("B", 35, Enrollment.IFM),
+                                new Student("C", 60, Enrollment.ELT),
+                                new Student("D", 45, Enrollment.ARCH),
+                                new Student("E", 80, Enrollment.IFM))));
 
         // Task III: Random
+        System.out.println(random());
 
         // Task IV+V: Resources
         System.out.println(resources("file.txt"));
@@ -35,8 +52,9 @@ public class Main {
      * @return Sum of credit points of all students
      */
     public static Integer students(List<Student> studentList) {
-        // TODO
-        throw new UnsupportedOperationException();
+        return (int)studentList.stream()
+            .map(Student::cps)
+            .reduce(0,Integer::sum);
     }
 
     /**
@@ -48,8 +66,10 @@ public class Main {
      * @return Set of credit points of all IFM students
      */
     public static Set<Integer> ifmCps(List<Student> studentList) {
-        // TODO
-        throw new UnsupportedOperationException();
+        return studentList.stream()
+            .filter(Student::isIFM)
+            .map(Student::cps)
+            .collect(Collectors.toSet());
     }
 
     /**
@@ -60,8 +80,11 @@ public class Main {
      * @return List of ten random integers (between 0 and 10)
      */
     public static List<Integer> random() {
-        // TODO
-        throw new UnsupportedOperationException();
+        Random r = new Random();
+        IntStream numberStream = r.ints(10, 0, 10);
+        List<Integer> rl =
+                numberStream.filter(Number -> Number % 2 == 0).boxed().collect(Collectors.toList());
+        return rl;
     }
 
     /**
